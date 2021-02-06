@@ -7,11 +7,14 @@
 
 .Spotify{
   display: flex;
+  width: 100%;
   justify-content: center;
   text-align: center;
   color: green;
 }
-
+.infos{
+  flex-wrap: wrap;
+}
 .Spotify h1{
   margin: 1%;
 }
