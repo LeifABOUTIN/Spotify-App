@@ -1,0 +1,17 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.Spotify{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: green;
+}
+
+.Spotify h1{
+  margin: 1%;
+}
