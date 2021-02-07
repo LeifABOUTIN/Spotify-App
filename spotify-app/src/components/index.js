@@ -1,10 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { logginIn, newToken } from '../actions';
+import { useHistory } from 'react-router-dom';
+
+
 const Spotify = () => {
-    const [ accessToken, setAccessToken ] = useState(null)
     const client_id = "e30f75f3d5e6414884fc4f837c0c2981";
     const client_secret = "2d9b9eb493e34461b9afa9cb0c8f83d0";
     const myURL = "http://localhost:3000";
-
+    const action = useDispatch();
+    let history = useHistory();
+  
     const handleConnexion = () => {
         window.location.href = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=code&redirect_uri=${myURL}&scope=user-read-private`
     }
@@ -31,18 +37,22 @@ const Spotify = () => {
                 body: data
                 })
                 .then( res => res.json())
-                .then( result => setAccessToken(result.access_token))
+                .then( result => {
+                    action(newToken(result.access_token))
+                    action(logginIn())
+                    history.push('/dashboard')
+                })
                 .catch( err => console.log(err))
                 }
     }
     return (
         <div className="Spotify">
             <h1>Spotify</h1>
-            <div className="infos">
+            <div className="nav">
                 <button onClick={()=> handleConnexion()} className="connect">LOGIN TO SPOTIFY</button>
-                { accessToken && <p>{accessToken}</p>}
             </div>
         </div>
+        
     );
 }
   
