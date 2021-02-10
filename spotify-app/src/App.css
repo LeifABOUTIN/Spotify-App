@@ -30,4 +30,5 @@
   transition: ease 1s;
   background-color: white;
   color: green;
+  cursor: pointer;
 }
