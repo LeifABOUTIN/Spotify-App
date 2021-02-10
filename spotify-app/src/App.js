@@ -3,12 +3,14 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useLocation
 } from 'react-router-dom';
 
 import { store } from './store';
 import Spotify from './components';
 import Dashboard from './components/dashboard';
+import LastTracks from './components/lastTracks';
+import NewReleases from  './components/newReleases';
+import SavedTracks from './components/savedTracks';
 import './App.css';
 
 function App() {
@@ -19,6 +21,9 @@ function App() {
           <Switch>
             <Route path="/" exact component={Spotify}/>
             <Route path="/dashboard" component={Dashboard}/>
+            <Route path="/last-tracks" component={LastTracks}/>
+            <Route path="/new-releases" component={NewReleases}/>
+            <Route path="/saved-tracks" component={SavedTracks}/>
           </Switch>
         </div>
       </Router>

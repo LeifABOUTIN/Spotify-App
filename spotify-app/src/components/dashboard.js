@@ -1,15 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { user } from '../actions';
 
 
 const Dashboard = () => {
-    const [ userInfos, setUserInfos ] = useState();
-    const token = useSelector(state => state.tokenReducer)
-    const endpoint = "https://api.spotify.com/v1/me"
+    const token = useSelector(state => state.tokenReducer);
+    const endpoint = "https://api.spotify.com/v1/me";
+    const action = useDispatch();
+    const userData = useSelector(state => state.userInfos)
+    const loggedIn = useSelector(state => state.isLoggedInReducer)
+    let history = useHistory();
+
+    
+    
 
     useEffect(() => {
-        console.log(token)
         fetch(endpoint, {
             headers: {
                 "Content-Type":"application/json",
@@ -17,16 +23,22 @@ const Dashboard = () => {
             }
         })
         .then( res => res.json())
-        .then( data => setUserInfos(data))
+        .then( data => action(user(data)))
+        
     },[])
     
     return (
         <div className="Dashboard">
             <h1>Dashboard</h1>
-            { userInfos && 
+            { loggedIn && userData &&
             <div className="infos">
-                <p>{JSON.stringify(userInfos)}</p>
-                <h2>Hi {userInfos.display_name} </h2>
+                <h2>Hi {userData.display_name} </h2>
+                <img src={userData.images[0].url} alt="Spotify avatar" height="200px" width="auto"/>
+                <button onClick={() => history.push("/last-tracks")}>RECENTLY PLAYED</button>
+                <button onClick={() => history.push("/new-releases")}>YOUR LAST LIKED SONGS</button>
+                <button onClick={() => history.push("/saved-tracks")}>YOUR SAVED TRACKS</button>
+
+
             </div>
             }
         </div>

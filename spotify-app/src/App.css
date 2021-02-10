@@ -1,20 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@800&display=swap');
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Heebo', sans-serif;
 }
-
 .Spotify{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  text-align: center;
-  color: green;
+  min-height: 100vh;
+  background: url("./images/Spotify-Homepage.png");
+  background-size: cover;
 }
 .nav{
   flex-wrap: wrap;
 }
-.Spotify h1{
-  margin: 1%;
+.connect{
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  background-color: green;
+  font-weight: bold;
+  color: white;
+  padding : 1%;
+  font-family: sans-serif;
+
+
+}
+.connect:hover{
+  transform: scale(1.5);
+  transition: ease 1s;
+  background-color: white;
+  color: green;
 }

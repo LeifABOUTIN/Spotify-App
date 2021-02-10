@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logginIn, newToken } from '../actions';
 import { useHistory } from 'react-router-dom';
 
+import wallpaper from '../images/Spotify-Homepage.png'
 
 const Spotify = () => {
     const client_id = "e30f75f3d5e6414884fc4f837c0c2981";
@@ -12,7 +13,7 @@ const Spotify = () => {
     let history = useHistory();
   
     const handleConnexion = () => {
-        window.location.href = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=code&redirect_uri=${myURL}&scope=user-read-private`
+        window.location.href = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=code&redirect_uri=${myURL}&scope=user-read-recently-played user-library-read`
     }
     useEffect(() => {
         getToken()
@@ -47,7 +48,6 @@ const Spotify = () => {
     }
     return (
         <div className="Spotify">
-            <h1>Spotify</h1>
             <div className="nav">
                 <button onClick={()=> handleConnexion()} className="connect">LOGIN TO SPOTIFY</button>
             </div>
