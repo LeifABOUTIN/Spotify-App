@@ -11,6 +11,7 @@ import Dashboard from './components/dashboard';
 import LastTracks from './components/lastTracks';
 import NewReleases from  './components/newReleases';
 import SavedTracks from './components/savedTracks';
+import PrivateRoute from './components/privateRoute';
 import './App.css';
 
 function App() {
@@ -20,10 +21,18 @@ function App() {
         <div className="App">
           <Switch>
             <Route path="/" exact component={Spotify}/>
-            <Route path="/dashboard" component={Dashboard}/>
-            <Route path="/last-tracks" component={LastTracks}/>
-            <Route path="/new-releases" component={NewReleases}/>
-            <Route path="/saved-tracks" component={SavedTracks}/>
+            <PrivateRoute path="/dashboard">
+              <Dashboard />
+            </PrivateRoute>
+            <PrivateRoute path="/last-tracks">
+              <LastTracks />
+            </PrivateRoute>
+            <PrivateRoute path="/new-releases">
+              <NewReleases />
+            </PrivateRoute>
+            <PrivateRoute path="/saved-tracks">
+             <SavedTracks />
+            </PrivateRoute>
           </Switch>
         </div>
       </Router>

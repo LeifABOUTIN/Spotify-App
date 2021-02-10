@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Player from './player';
 
 const SavedTracks = () => {
     const endpoint = "https://api.spotify.com/v1/me/tracks";
@@ -7,6 +8,7 @@ const SavedTracks = () => {
     const [ savedTracks, setSavedTracks ] = useState();
     const [ player, setPlayer ] = useState();
     const [ song, setSong ] = useState();
+    const [ track, setTrack] = useState();
     useEffect( async () => {
         const response = await fetch(endpoint, {
             headers:{
@@ -20,13 +22,13 @@ const SavedTracks = () => {
 
     },[])
     const handleClick = (id) => {
-        setSong(id)
+        setTrack({"id" : id, "type":"track"})
         setPlayer(true)
     }
     return (
         <div className="savedtracks">
             <h1>SavedTracks</h1>
-            {player && <iframe src={`https://open.spotify.com/embed/track/${song}`} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>}
+            {player && <Player track_infos={track}/>}
             {savedTracks && savedTracks.map(tracks => (
                 <div key={tracks.track.id}>
                 <h2>{tracks.track.name}</h2>

@@ -12,9 +12,6 @@ const Dashboard = () => {
     const loggedIn = useSelector(state => state.isLoggedInReducer)
     let history = useHistory();
 
-    
-    
-
     useEffect(() => {
         fetch(endpoint, {
             headers: {

@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { logginIn, newToken } from '../actions';
 import { useHistory } from 'react-router-dom';
-
-import wallpaper from '../images/Spotify-Homepage.png'
 
 const Spotify = () => {
     const client_id = "e30f75f3d5e6414884fc4f837c0c2981";
