@@ -7,7 +7,6 @@ const SavedTracks = () => {
     const token = useSelector( state => state.tokenReducer);
     const [ savedTracks, setSavedTracks ] = useState();
     const [ player, setPlayer ] = useState();
-    const [ song, setSong ] = useState();
     const [ track, setTrack] = useState();
     useEffect( async () => {
         const response = await fetch(endpoint, {
@@ -26,11 +25,11 @@ const SavedTracks = () => {
         setPlayer(true)
     }
     return (
-        <div className="savedtracks">
+        <div id="Savedtracks" className="Savedtracks">
             <h1>SavedTracks</h1>
             {player && <Player track_infos={track}/>}
             {savedTracks && savedTracks.map(tracks => (
-                <div key={tracks.track.id}>
+                <div  key={tracks.track.id}>
                 <h2>{tracks.track.name}</h2>
                 <img onClick={() => handleClick(tracks.track.id)} src={tracks.track.album.images[0].url} alt="album cover"/>
                 </div>

@@ -9,6 +9,7 @@ const NewReleases = () => {
     const [ player, setPlayer ] = useState();
     const [ track, setTrack ] = useState();
     
+    
     useEffect(() => {
         fetch(endpoint, {
             headers: {
@@ -18,11 +19,15 @@ const NewReleases = () => {
         })
         .then( res => res.json())
         .then( data => { setTracks(data.albums.items)
-                        console.log(data)})
+                        })
+        
+        
     },[])
-
+    // const handleMouseover = (e) => {
+    //     console.log(e)
+    //     // img.innerHTML = <p>click me</p>
+    // }
     const handlePlay = async (id) => {
-        console.log('play')
         setTrack({"id": id, "type":"album"})
         setPlayer(true)
     }
@@ -34,7 +39,7 @@ const NewReleases = () => {
             { tracks && tracks.map( track => (
                 <div key={track.id} className="track">
                     <p>{track.name}</p> 
-                    <img onClick={() => handlePlay(track.id)} src={track.images[0].url} alt="album cover"/>
+                    <img id="albumIMGS" onClick={() => handlePlay(track.id)} src={track.images[0].url} alt="album cover"/>
                 </div>
             ))} 
         </div>

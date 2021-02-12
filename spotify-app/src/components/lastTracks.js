@@ -28,7 +28,7 @@ const LastTracks = () => {
             {tracks && tracks.map( track => (
                 <div key={track.track.id} className="track">
                     <p>{track.track.name}</p> 
-                    <img src={track.track.album.images[0].url} height="200px" width="auto" alt="album cover"/>
+                    <img src={track.track.album.images[0].url} alt="album cover"/>
                 </div>
             ))}
            
